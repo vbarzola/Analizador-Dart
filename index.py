@@ -32,3 +32,15 @@ reservadas = {
     'while': 'WHILE'
 }
 
+
+"""
+Aporte Alex
+"""
+tokens = ["ID", "NUM_ENTERO", "NUM_DECIMAL", "CADENA_CARAC",
+          "IPAR", "DPAR", "ICORCH", "DCORCH", "ILLAVE", "DLLAVE",
+          "ASIGNAR", "PUNTO_COMA", "PUNTO", "COMA", "DOS_PUNTOS",
+          "MAS", "MENOS", "POR", "DIVIDIDO", "DIVISION_ENTERA", "MODULO",
+          "AUTOINCREMENTO", "AUTODECREMENTO",
+          "MAYOR_QUE", "MENOR_QUE", "IGUAL_QUE", "DIFERENTE_QUE", "MENOR_IGUAL", "MAYOR_IGUAL",
+          "NEGACION", "Y", "O"
+          ] + list(reservadas.values())
