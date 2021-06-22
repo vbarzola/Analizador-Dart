@@ -82,3 +82,61 @@ t_O = r'\|\|'
 
 
 t_ignore = " \t"
+
+"""
+Aporte Alex
+"""
+
+
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = reservadas.get(t.value, 'ID')    # Check for reserved words
+    return t
+
+
+def t_COMMENT(t):
+    r'(\/\/.*|\/\*(.|\n)*\*\/)'
+    pass
+
+
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += t.value.count("\n")
+
+
+def find_column(input, token):
+    line_start = input.rfind('\n', 0, token.lexpos) + 1
+
+    return (token.lexpos - line_start) + 1
+
+
+def t_error(t):
+    col = find_column(ejemplo, t)
+    print(
+        f"Caracter inválido {t.value[0]} en la línea {t.lineno}, columna {col}")
+    t.lexer.skip(1)
+
+
+lexer = lex.lex()
+ejemplo = '''
+
+var a = 5;
+for (int i=5; i<7;i++){
+  if(i==5){
+    print("Hola Mundo");
+  }
+  while(true){
+    String name = stdin.readLineSync();
+    print(name);
+    print("lel
+    ");
+  }
+}
+'''
+lexer.input(ejemplo)
+
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
+    print(tok)
