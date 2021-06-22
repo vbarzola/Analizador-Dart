@@ -90,7 +90,7 @@ Aporte Alex
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reservadas.get(t.value, 'ID')    # Check for reserved words
+    t.type = reservadas.get(t.value, 'ID')
     return t
 
 
