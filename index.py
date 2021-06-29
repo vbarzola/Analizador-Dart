@@ -14,7 +14,6 @@ reservadas = {
     'false': 'FALSE',
     'final': 'FINAL',
     'for': 'FOR',
-    'function': 'FUNCTION',
     'if': 'IF',
     'import': 'IMPORT',
     'in': 'IN',

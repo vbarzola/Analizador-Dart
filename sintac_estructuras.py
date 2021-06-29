@@ -8,6 +8,8 @@ def p_valor(p):
           | estructura_dato
           | indexacion
           | estructs_metodos
+          | read
+          | ejecutar_funcion
     '''
 
 
@@ -99,10 +101,11 @@ def p_estructs_metodos(p):
   
 def verificar_tipo(p, tipo_dato_req):
     tipo_dato = variables_declaradas.get(p[1])
+    tipos_datos_dinamicos = ['var','final','const']
     if tipo_dato is None:
       print("Esta variable no ha sido definida aun.")
       raise SyntaxError
-    elif tipo_dato != tipo_dato_req:
+    elif tipo_dato != tipo_dato_req and tipo_dato not in tipos_datos_dinamicos :
         print("Este tipo de dato no tiene este método")
         raise SyntaxError
   

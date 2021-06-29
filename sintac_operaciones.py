@@ -51,6 +51,8 @@ def p_operando_comp_orden(p):
     operando_comp_orden : operacion_mat_con_par
                         | numero
                         | ID
+                        | indexacion
+                        | ejecutar_funcion
     '''
 
 
@@ -83,6 +85,8 @@ def p_operando_comp_eq(p):
                     | operacion_mat_con_par
                     | operacion_comp_orden
                     | operacion_comp_con_par
+                    | indexacion
+                    | ejecutar_funcion
                     | ID
     '''
 
