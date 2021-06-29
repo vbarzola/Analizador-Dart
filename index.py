@@ -1,4 +1,6 @@
 from ply import lex
+
+code = ''
 """
 Aporte valeria
 """
@@ -32,6 +34,17 @@ reservadas = {
     'while': 'WHILE'
 }
 
+metodos_estructuras = {
+  "List":['join','indexOf','add'],
+  "Set": ['contains','difference','union'],
+  "Map" : ['remove','clear', 'containsKey']
+}
+
+metodos = {}
+
+for list_func in metodos_estructuras.values():
+  for func in list_func:
+    metodos[func] = func.upper()
 
 """
 Aporte Alex
@@ -42,8 +55,8 @@ tokens = ["ID", "NUM_ENTERO", "NUM_DECIMAL", "CADENA_CARAC",
           "MAS", "MENOS", "POR", "DIVIDIDO", "DIVISION_ENTERA", "MODULO",
           "AUTOINCREMENTO", "AUTODECREMENTO",
           "MAYOR_QUE", "MENOR_QUE", "IGUAL_QUE", "DIFERENTE_QUE", "MENOR_IGUAL", "MAYOR_IGUAL",
-          "NEGACION", "Y", "O"
-          ] + list(reservadas.values())
+          "NEGACION", "Y", "O", "O_EXCLUSIVO"
+          ] + list(reservadas.values()) + list(metodos.values())
 
 """
 Aporte valeria
@@ -79,7 +92,7 @@ t_MAYOR_IGUAL = r'>='
 t_NEGACION = r'!'
 t_Y = r'&&'
 t_O = r'\|\|'
-
+t_O_EXCLUSIVO = r'\^'
 
 t_ignore = " \t"
 
@@ -90,7 +103,7 @@ Aporte Alex
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reservadas.get(t.value, 'ID')
+    t.type = reservadas.get(t.value, metodos.get(t.value, 'ID'))
     return t
 
 
@@ -111,32 +124,10 @@ def find_column(input, token):
 
 
 def t_error(t):
-    col = find_column(ejemplo, t)
+    col = find_column(code, t)
     print(
-        f"Caracter inválido {t.value[0]} en la línea {t.lineno}, columna {col}")
+        f"Caracter inválido {t.value[0]} en la línea {t.lineno}, en la columna {col}")
     t.lexer.skip(1)
 
 
 lexer = lex.lex()
-ejemplo = '''
-
-var a = 5;
-for (int i=5; i<7;i++){
-  if(i==5){
-    print("Hola Mundo");
-  }
-  while(true){
-    String name = stdin.readLineSync();
-    print(name);
-    print("lel
-    ");
-  }
-}
-'''
-lexer.input(ejemplo)
-
-while True:
-    tok = lexer.token()
-    if not tok:
-        break
-    print(tok)
