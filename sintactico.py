@@ -115,40 +115,6 @@ def p_cuerpo_estruct(p):
     '''
 
 
-def p_for(p):
-    '''
-    for : FOR IPAR asignacion operacion_log PUNTO_COMA operaciones DPAR cuerpo_estruct 
-        | FOR IPAR ID IN ID DPAR cuerpo_estruct
-    '''
-
-
-def p_if(p):
-    '''
-    if : IF IPAR operacion_log DPAR cuerpo_estruct
-    '''
-
-
-def p_if_else(p):
-    '''
-    if_else : IF IPAR operacion_log DPAR cuerpo_estruct ELSE cuerpo_estruct
-    '''
-
-
-def p_while(p):
-    '''
-    while : WHILE IPAR operacion_log DPAR cuerpo_estruct
-    '''
-
-
-def p_estructura_control(p):
-    '''
-    estructura_control : if
-                        | if_else
-                        | while
-                        | for
-    '''
-
-
 def p_error(p):
     if p is not None:
         print("Error de sintaxis en la linea %s" % (p.lineno))
