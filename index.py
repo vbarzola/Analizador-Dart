@@ -5,6 +5,7 @@ code = ''
 Aporte valeria
 """
 reservadas = {
+    'as': 'AS',
     'bool': 'BOOL',
     'break': 'BREAK',
     'const': 'CONST',

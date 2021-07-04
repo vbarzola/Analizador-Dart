@@ -1,3 +1,6 @@
+from estado import manejar_estado
+
+
 def p_operador_mat(p):
     '''
     operador_mat : MAS
@@ -17,6 +20,14 @@ def p_operando_mat(p):
                   | negativo
                   | ejecutar_funcion
                   | estructs_metodos
+                  | casting_num
+    '''
+
+
+def p_casting_num(p):
+    '''
+    casting_num : IPAR valor AS INT DPAR
+                  | IPAR valor AS DOUBLE DPAR
     '''
 
 
@@ -112,6 +123,7 @@ def p_operando_comp_eq(p):
                     | operacion_log_con_par
                     | negativo
                     | estructs_metodos
+                    | IPAR valor AS BOOL DPAR
     '''
 
 

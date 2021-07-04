@@ -1,5 +1,5 @@
-//Código de ejemplo de operaciones
-//Este ejemplo no deberia contener errores
+//Código de ejemplo de operaciones y casting
+//Este ejemplo contiene errores
 void main(){
     String ejemplo = stdin.readLineSync();
     var a = (5+5+5+5)+5+5+(5+(20-5)*5)~/5;
@@ -13,4 +13,8 @@ void main(){
     a--;
     a-=d;
     a%= -(5-10);
+    int d = (a as int) + 5 + (b as double);
+    int  e = (c as String) + b; //Va a dar error porque
+                                //el primer operando no 
+                                //es numerico 
 }

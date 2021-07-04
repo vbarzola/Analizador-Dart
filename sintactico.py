@@ -91,6 +91,7 @@ def p_valor(p):
           | read
           | ejecutar_funcion
           | negativo
+          | casting
     '''
 
 
@@ -256,8 +257,12 @@ def p_ejecutar_funcion(p):
     '''
 
 
+def p_casting(p):
+    'casting : IPAR valor AS tipo_dato DPAR'
+    p[0] = p[4]
+
+
 def p_error(p):
-    print('entre a error')
     manejar_estado.err_sintacticos += 1
     print(code)
     if p is not None:
