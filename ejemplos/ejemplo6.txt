@@ -1,0 +1,35 @@
+// Muestra de estucturas de control
+// Tiene varios errores sintacticos
+void main(){
+  const a; //Error las constantes deben ser inicializadas
+  List b = [10,20,30];
+  //Se mostrarán las diferentes formas de 
+  //recorrer un arreglo
+  for(var i in b){
+    print(i) //Error falta punto y coma
+  }
+  for (var i = 0; i<b.length;i++){
+    print(b[i]);
+  }
+  for(var i = 0; i++; i<b.length){//Error la segunda expresión 
+                                  //del for debe ser booleana
+    print(b[i]);
+  }
+  var i = 0;
+  while(i<b.length){
+    print(b[i]);
+  }
+  while(i++){ //Error debe usar una expresión condicional
+    print(b[i]);
+    if(i>5){
+      continue;
+    }
+    else{
+      break;
+    }
+  }
+  var i = 0;
+  while(i<b.length){
+    print(b[i]);
+  }
+}

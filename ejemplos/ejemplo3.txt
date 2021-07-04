@@ -1,0 +1,10 @@
+// Importando librerias
+import 'dart:math';
+// Este ejemplo no debe tener errores
+void main(){
+    int a = 5;
+    int b = 10;
+    var c = pow(a,b);
+    print("El resultado de 5 elevado a la 10 es: ");
+    print(c);
+}

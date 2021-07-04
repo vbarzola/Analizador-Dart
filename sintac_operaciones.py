@@ -13,12 +13,17 @@ def p_operando_mat(p):
     '''
     operando_mat : numero 
                   | ID
+                  | indexacion
+                  | negativo
+                  | ejecutar_funcion
+                  | estructs_metodos
     '''
 
 
 def p_operacion_mat_sin_par(p):
     '''
     operacion_mat_sin_par : operando_mat operador_mat operacion_mat
+                          | ID operador_mat operacion_mat
     '''
 
 
@@ -28,12 +33,27 @@ def p_operacion_mat_con_par(p):
     '''
 
 
-def p_operacion_mat(p):
+def p_operacion_mat_pos(p):
     '''
-    operacion_mat : operacion_mat_con_par
-                  | operacion_mat_con_par operador_mat operacion_mat
+    operacion_mat_pos : operacion_mat_con_par
+                  | MENOS operacion_mat_con_par
+                  | operacion_mat_con_par operador_mat operacion_mat_pos
                   | operacion_mat_sin_par
                   | operando_mat
+    '''
+
+
+def p_operacion_mat_neg(p):
+    '''
+    operacion_mat_neg : MENOS operacion_mat_con_par
+                      | MENOS operacion_mat_con_par operador_mat operacion_mat_pos
+    '''
+
+
+def p_operacion_mat(p):
+    '''
+    operacion_mat : operacion_mat_pos
+                  | operacion_mat_neg
     '''
 
 
@@ -48,11 +68,13 @@ def p_operador_comp_orden(p):
 
 def p_operando_comp_orden(p):
     '''
-    operando_comp_orden : operacion_mat_con_par
+    operando_comp_orden : operacion_mat
                         | numero
                         | ID
                         | indexacion
                         | ejecutar_funcion
+                        | negativo
+                        | estructs_metodos
     '''
 
 
@@ -74,20 +96,22 @@ def p_operacion_comp_orden(p):
                         | operacion_comp_orden_con_par
     '''
 
-#eq = equivalencia
 
-
+#eq = equivalencia -(5+5) < 5
 def p_operando_comp_eq(p):
     '''
     operando_comp_eq : numero
                     | bool
                     | CADENA_CARAC
-                    | operacion_mat_con_par
+                    | operacion_mat
                     | operacion_comp_orden
                     | operacion_comp_con_par
                     | indexacion
                     | ejecutar_funcion
                     | ID
+                    | operacion_log_con_par
+                    | negativo
+                    | estructs_metodos
     '''
 
 
@@ -165,8 +189,7 @@ def p_operando_log_not(p):
 
 def p_operacion_log_not_sin_par(p):
     '''
-    operacion_log_not_sin_par : NEGACION operando_log_not
-                        |  
+    operacion_log_not_sin_par : NEGACION operando_log_not 
     '''
 
 
@@ -202,14 +225,6 @@ def p_operacion_unaria(p):
     '''
 
 
-def p_operadores_autoasig(p):
-    'operadores_autoasig : operador_mat ASIGNAR'
-
-
-def p_operacion_autoasig(p):
-    '''operacion_autoasig : ID operadores_autoasig operacion_mat'''
-
-
 def p_operaciones(p):
     '''
     operaciones : operacion_mat
@@ -217,3 +232,15 @@ def p_operaciones(p):
                 | operacion_unaria
                 | operacion_autoasig
     '''
+
+
+# def p_operadores_autoasig(p):
+#    'operadores_autoasig : operador_mat ASIGNAR'
+
+
+def p_operacion_autoasig(p):
+    '''operacion_autoasig : ID operador_mat ASIGNAR operacion_mat'''
+
+
+#  ID operador_mat a
+#

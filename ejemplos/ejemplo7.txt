@@ -1,0 +1,22 @@
+//Ejemplo probando los metodos de estructuras de datos
+//No se deberia caer
+void main(){
+    //Listas
+    List b = [1,2,3,4];
+    String c = b.join();
+    String d = b.join('/');
+    String e = [1,2,3,4].join();
+    [1,2,3,4].add(5);
+    //Conjuntos
+    Set a =  {1,2,3};
+    a.contains(1);
+    print({1,2,3}.contains(1));
+    {1,2,3}.difference({1,2,3});
+    {1,2,3}.union({1,2,3});
+    //Mapas
+    Map mapa = {'uno':1, 'dos':2};
+    mapa.remove('uno');
+    {'uno':1, 'dos':2}.remove('uno');
+    {'uno':1, 'dos':2}.clear();
+    {'uno':1, 'dos':2}.containsKey('tres');
+}

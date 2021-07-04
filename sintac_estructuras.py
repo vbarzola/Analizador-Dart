@@ -1,16 +1,4 @@
-variables_declaradas = {}
-
-def p_valor(p):
-    '''
-    valor : datos
-          | operaciones
-          | ID
-          | estructura_dato
-          | indexacion
-          | estructs_metodos
-          | read
-          | ejecutar_funcion
-    '''
+from estado import manejar_estado
 
 
 def p_valores(p):
@@ -39,15 +27,33 @@ def p_lista(p):
           | ICORCH DCORCH
     '''
 
-def p_lista_join(p):
+
+def p_lista_metodos_var(p):
     '''
-    lista_metodos : ID PUNTO JOIN IPAR CADENA_CARAC DPAR
+    lista_metodos_var : ID PUNTO JOIN IPAR CADENA_CARAC DPAR
                   | ID PUNTO JOIN IPAR DPAR
                   | ID PUNTO INDEXOF IPAR valor DPAR
                   | ID PUNTO INDEXOF IPAR valor COMA valor DPAR
                   | ID PUNTO ADD IPAR valor DPAR
     '''
-    verificar_tipo(p, 'List')
+
+
+def p_lista_metodos_estruct(p):
+    '''
+    lista_metodos_estruct : lista PUNTO JOIN IPAR CADENA_CARAC DPAR
+                  | lista PUNTO JOIN IPAR DPAR
+                  | lista PUNTO INDEXOF IPAR valor DPAR
+                  | lista PUNTO INDEXOF IPAR valor COMA valor DPAR
+                  | lista PUNTO ADD IPAR valor DPAR
+    '''
+
+
+def p_lista_metodos(p):
+    '''
+    lista_metodos : lista_metodos_var
+                  | lista_metodos_estruct 
+    '''
+
 
 def p_conjunto(p):
     '''
@@ -55,21 +61,33 @@ def p_conjunto(p):
               | ILLAVE DLLAVE
     '''
 
-def p_verif_conjunto(p):
-    'verif_conjunto : ID'
-    p[0] = p[1]
-    verificar_tipo(p, 'Set')
+
+def p_conjunto_metodos_var(p):
+    '''
+    conjunto_metodos_var : ID PUNTO CONTAINS IPAR valor DPAR
+                    | ID PUNTO DIFFERENCE IPAR conjunto DPAR
+                    | ID PUNTO DIFFERENCE IPAR ID DPAR
+                    | ID PUNTO UNION IPAR conjunto DPAR
+                    | ID PUNTO UNION IPAR ID DPAR
+    '''
+
+
+def p_conjunto_metodos_struct(p):
+    '''
+    conjunto_metodos_struct : conjunto PUNTO CONTAINS IPAR valor DPAR
+                            | conjunto PUNTO DIFFERENCE IPAR conjunto DPAR
+                            | conjunto PUNTO DIFFERENCE IPAR ID DPAR
+                            | conjunto PUNTO UNION IPAR conjunto DPAR
+                            | conjunto PUNTO UNION IPAR ID DPAR
+    '''
 
 
 def p_conjunto_metodos(p):
     '''
-    conjunto_metodos : ID PUNTO CONTAINS IPAR valor DPAR
-                    | ID PUNTO DIFFERENCE IPAR conjunto DPAR
-                    | ID PUNTO DIFFERENCE IPAR verif_conjunto DPAR
-                    | ID PUNTO UNION IPAR conjunto DPAR
-                    | ID PUNTO UNION IPAR verif_conjunto DPAR
+    conjunto_metodos : conjunto_metodos_var
+                     | conjunto_metodos_struct
     '''
-    verificar_tipo(p,'Set')
+
 
 def p_mapa(p):
     '''
@@ -77,13 +95,29 @@ def p_mapa(p):
         | ILLAVE DLLAVE
     '''
 
-def p_mapa_metodos(p):
+
+def p_mapa_metodos_var(p):
     '''
-    mapa_metodos : ID PUNTO REMOVE IPAR valor DPAR
+    mapa_metodos_var : ID PUNTO REMOVE IPAR valor DPAR
                     | ID PUNTO CLEAR IPAR DPAR
                     | ID PUNTO CONTAINSKEY IPAR valor DPAR
     '''
-    verificar_tipo(p,'Map')
+
+
+def p_mapa_metodos_struct(p):
+    '''
+    mapa_metodos_struct : mapa PUNTO REMOVE IPAR valor DPAR
+                        | mapa PUNTO CLEAR IPAR DPAR
+                        | mapa PUNTO CONTAINSKEY IPAR valor DPAR
+    '''
+
+
+def p_mapa_metodos(p):
+    '''
+    mapa_metodos : mapa_metodos_var
+                 | mapa_metodos_struct
+    '''
+
 
 def p_estructura_dato(p):
     '''
@@ -92,20 +126,10 @@ def p_estructura_dato(p):
                 | mapa
     '''
 
+
 def p_estructs_metodos(p):
     '''
     estructs_metodos : lista_metodos
                       | conjunto_metodos
                       | mapa_metodos
     '''
-  
-def verificar_tipo(p, tipo_dato_req):
-    tipo_dato = variables_declaradas.get(p[1])
-    tipos_datos_dinamicos = ['var','final','const']
-    if tipo_dato is None:
-      print("Esta variable no ha sido definida aun.")
-      raise SyntaxError
-    elif tipo_dato != tipo_dato_req and tipo_dato not in tipos_datos_dinamicos :
-        print("Este tipo de dato no tiene este método")
-        raise SyntaxError
-  

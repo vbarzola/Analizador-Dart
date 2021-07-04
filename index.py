@@ -1,5 +1,5 @@
 from ply import lex
-
+from estado import manejar_estado
 code = ''
 """
 Aporte valeria
@@ -34,16 +34,18 @@ reservadas = {
 }
 
 metodos_estructuras = {
-  "List":['join','indexOf','add'],
-  "Set": ['contains','difference','union'],
-  "Map" : ['remove','clear', 'containsKey']
+    "List": ['join', 'indexOf', 'add'],
+    "Set": ['contains', 'difference', 'union'],
+    "Map": ['remove', 'clear', 'containsKey']
 }
+
+contador = 0
 
 metodos = {}
 
 for list_func in metodos_estructuras.values():
-  for func in list_func:
-    metodos[func] = func.upper()
+    for func in list_func:
+        metodos[func] = func.upper()
 
 """
 Aporte Alex
@@ -60,9 +62,11 @@ tokens = ["ID", "NUM_ENTERO", "NUM_DECIMAL", "CADENA_CARAC",
 """
 Aporte valeria
 """
+
+
 t_NUM_ENTERO = r'([1-9]\d+|\d)'
 t_NUM_DECIMAL = r'([1-9]\d+|\d)\.\d+'
-t_CADENA_CARAC = r'(\'[^\'\n]*\'|"[^"\n]*")'
+#t_CADENA_CARAC = r'(\'[^\'\n]*\'|"[^"\n]*")'
 t_IPAR = r'\('
 t_DPAR = r'\)'
 t_ICORCH = r'\['
@@ -100,6 +104,12 @@ Aporte Alex
 """
 
 
+def t_CADENA_CARAC(t):
+    r'(\'[^\'\n]*\'|"[^"\n]*")'
+    t.lexer.lineno += t.value.count("\n")
+    return t
+
+
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reservadas.get(t.value, metodos.get(t.value, 'ID'))
@@ -107,7 +117,8 @@ def t_ID(t):
 
 
 def t_COMMENT(t):
-    r'(\/\/.*|\/\*(.|\n)*\*\/)'
+    r'(\/\/.*|\/\*(.|\n)*?(?=\*\/)\*\/)'
+    t.lexer.lineno += t.value.count("\n")
     pass
 
 
@@ -117,16 +128,37 @@ def t_newline(t):
 
 
 def find_column(input, token):
+    print('find column input', input)
     line_start = input.rfind('\n', 0, token.lexpos) + 1
 
     return (token.lexpos - line_start) + 1
 
 
 def t_error(t):
-    col = find_column(code, t)
+    col = find_column(manejar_estado.codigo, t)
     print(
         f"Caracter inválido {t.value[0]} en la línea {t.lineno}, en la columna {col}")
+    manejar_estado.descr_err_lexicos = f"Caracter inválido {t.value[0]} en la línea {t.lineno}, en la columna {col}\n"
+    manejar_estado.err_lexicos += 1
     t.lexer.skip(1)
 
 
-lexer = lex.lex()
+manejar_estado()
+
+
+def construir_lexer():
+    manejar_estado.lexer = lex.lex()
+
+
+def analizar_lexico(codigo):
+    manejar_estado()
+    construir_lexer()
+    manejar_estado.codigo = codigo
+    lexer = manejar_estado.lexer
+    lexer.input(codigo)
+    print("Estoy aquqi", codigo)
+    while True:
+        tok = lexer.token()
+        if not tok:
+            break
+    return manejar_estado.descr_err_lexicos

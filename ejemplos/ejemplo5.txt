@@ -1,0 +1,28 @@
+/*
+ * Codigo dedicado a la busqueda binaria
+ */
+
+ /*
+  Este metodo no debe de tener errores sintacticos
+ */
+void main(){
+    List a = [1,2,3,4,5,6];
+    var index = busqueda_binaria(a, 3, 0, 5);
+    if(index == [1,2,3,4,5,6].indexOf(3))
+      print('El  metodo de busqueda binaria');
+      print(' ha sido implementado correctamente.');
+    else{
+      print("El metodo de busqueda binaria ha fallado");      
+    }
+}
+
+int busqueda_binaria(List arr, int valor, int inicio, int fin){
+  var medio = (inicio - fin) ~/ 2;
+  if(arr[medio]<valor){
+    return busqueda_binaria(arr, valor, medio-1, fin);
+  }
+  if(arr[medio]>valor){
+    return busqueda_binaria(arr, valor, inicio+1, medio);
+  }
+  return medio;
+}
