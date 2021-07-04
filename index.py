@@ -156,7 +156,6 @@ def analizar_lexico(codigo):
     manejar_estado.codigo = codigo
     lexer = manejar_estado.lexer
     lexer.input(codigo)
-    print("Estoy aquqi", codigo)
     while True:
         tok = lexer.token()
         if not tok:

@@ -6,7 +6,6 @@ from index import analizar_lexico
 
 
 def validar_mensaje_errores(output, tipo):
-    print("output", output)
     output_codigo.config(state=tk.NORMAL)
     output_codigo.delete('1.0', tk.END)
     if output != '':

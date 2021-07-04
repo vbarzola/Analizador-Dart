@@ -1,4 +1,3 @@
-from ply import lex
 import ply.yacc as yacc
 
 from index import construir_lexer, tokens, code, find_column
