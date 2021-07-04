@@ -34,7 +34,7 @@ reservadas = {
 }
 
 metodos_estructuras = {
-    "List": ['join', 'indexOf', 'add'],
+    "List": ['join', 'indexOf', 'add', 'length'],
     "Set": ['contains', 'difference', 'union'],
     "Map": ['remove', 'clear', 'containsKey']
 }

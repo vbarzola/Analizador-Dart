@@ -35,6 +35,7 @@ def p_lista_metodos_var(p):
                   | ID PUNTO INDEXOF IPAR valor DPAR
                   | ID PUNTO INDEXOF IPAR valor COMA valor DPAR
                   | ID PUNTO ADD IPAR valor DPAR
+                  | ID PUNTO LENGTH
     '''
 
 
@@ -45,6 +46,7 @@ def p_lista_metodos_estruct(p):
                   | lista PUNTO INDEXOF IPAR valor DPAR
                   | lista PUNTO INDEXOF IPAR valor COMA valor DPAR
                   | lista PUNTO ADD IPAR valor DPAR
+                  | lista PUNTO LENGTH
     '''
 
 

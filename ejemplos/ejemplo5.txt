@@ -8,12 +8,12 @@
 void main(){
     List a = [1,2,3,4,5,6];
     var index = busqueda_binaria(a, 3, 0, 5);
-    if(index == [1,2,3,4,5,6].indexOf(3))
+    if(index == [1,2,3,4,5,6].indexOf(3)){
       print('El  metodo de busqueda binaria');
       print(' ha sido implementado correctamente.');
-    else{
+    }else
       print("El metodo de busqueda binaria ha fallado");      
-    }
+    
 }
 
 int busqueda_binaria(List arr, int valor, int inicio, int fin){

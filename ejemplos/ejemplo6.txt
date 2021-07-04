@@ -11,8 +11,9 @@ void main(){
   for (var i = 0; i<b.length;i++){
     print(b[i]);
   }
-  for(var i = 0; i++; i<b.length){//Error la segunda expresión 
-                                  //del for debe ser booleana
+  for(var i = 0; i++; i<b.length){
+    //Error la segunda expresión 
+    //del for debe ser booleana
     print(b[i]);
   }
   var i = 0;
