@@ -87,7 +87,7 @@ boton_sintactico = tk.Button(
     ventana, text="Analizador sintactico", bg='#6A6A6A', fg='white', image=photo, compound=tk.LEFT, padx=5, pady=5, command=analizar_sint_event)
 
 boton_random.place(x=270, y=565)
-boton_lexico.place(x=450, y=600)
+boton_lexico.place(x=440, y=600)
 boton_sintactico.place(x=600, y=600)
 
 ventana.mainloop()
