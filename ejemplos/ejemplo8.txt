@@ -1,4 +1,4 @@
-//Codigo de ejemplo de operaciones
+//Código de ejemplo de operaciones
 //Este ejemplo no deberia contener errores
 void main(){
     String ejemplo = stdin.readLineSync();

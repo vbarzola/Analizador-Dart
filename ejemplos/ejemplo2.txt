@@ -1,16 +1,16 @@
-// Ejemplo de como encontrar el n-esimo 
+// Ejemplo de como encontrar el n-ésimo 
 // numero de fibonacci
-// Este ejemplo tiene errores sintacticos
+// Este ejemplo tiene errores sintácticos
 int fibonacci(int n) {
   if (n == 0 || n == 1) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
 
 //void main(){
-print(fibonacci(20));//Esta no es una linea 
-                    //de codigo valida en dart
+print(fibonacci(20));//Esta no es una línea 
+                    //de código válida en dart
                     //Puesto que las sentencias 
-                    //deben estar dentro de una funcion,
-                    //Descomente la funcion main para 
-                    //ejecutar el codigo
+                    //deben estar dentro de una función,
+                    //Descomente la función main para 
+                    //ejecutar el código
 // }

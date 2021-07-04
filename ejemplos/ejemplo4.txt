@@ -1,9 +1,8 @@
-// Este es un comentario y sera ignorado,
+// Este es un comentario y será ignorado,
 // no toma en cuenta errores
 // de sintaxis ni lexicos ¿¿
 // Este metodo debe tener errores lexicos
 void main(){
-    //Deberá imprimir un error sintactico
     int ? = 5;
     print(?);
 }

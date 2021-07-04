@@ -24,18 +24,21 @@ def analizar_lex_event():
 def analizar_sint_event():
     text = input_codigo.get("1.0", "end-1c")
     estado_output = analizar_sintac(text)
-    n_err_sint = estado_output.err_sintacticos
     err_sint = estado_output.descr_err_sintacticos
     text = input_codigo.get("1.0", "end-1c")
     validar_mensaje_errores(err_sint, "sintáctico")
 
 
-def obtener_ejemplo_random(input):
+def obtener_ejemplo_random(input, output):
     indice = rd.randint(1, 8)
-    with open(f'./ejemplos/ejemplo{indice}.txt') as f:
+    with open(f'./ejemplos/ejemplo{indice}.txt', encoding='utf-8') as f:
         ejemplo = ''.join(f.readlines())
         input.delete('1.0', tk.END)
         input.insert(1.0, ejemplo)
+        output.config(state=tk.NORMAL)
+        output.delete('1.0', tk.END)
+        output.insert(1.0, "Aquí verá el resultado de su análisis.")
+        output.config(state=tk.DISABLED)
 
 
 ventana = tk.Tk()
@@ -62,6 +65,7 @@ input_img = tk.PhotoImage(file="./imagenes/input_text.png")
 canvas_input_img.create_image(255, 207.5, image=input_img)
 input_codigo = tk.Text(ventana, height=24, width=57,
                        bg="#C4C4C4", fg="#27868B",  bd=0, highlightthickness=0, relief='ridge', wrap="word")
+input_codigo.insert(1.0, '//Ingrese su código aquí')
 
 canvas_input_img.place(x=55, y=140)
 input_codigo.place(x=75, y=160)
@@ -74,12 +78,14 @@ output_img = tk.PhotoImage(file="./imagenes/input_text.png")
 canvas_output_img.create_image(255, 207.5, image=output_img)
 output_codigo = tk.Text(ventana, height=24, width=57,
                         bg="#C4C4C4", fg="#616161",  bd=0, highlightthickness=0, relief='ridge', wrap="word")
+output_codigo.insert(1.0, "Aquí verá el resultado de su análisis.")
+output_codigo.config(state="disabled")
 output_codigo.place(x=615, y=160)
 
 # BOTONES
 photo = tk.PhotoImage(file="./imagenes/play_arrow.png")
 boton_random = tk.Button(
-    ventana, text="RANDOM", bg='#6A6A6A', fg='white', padx=5, pady=1,  command=lambda: obtener_ejemplo_random(input_codigo))
+    ventana, text="RANDOM", bg='#6A6A6A', fg='white', padx=5, pady=1,  command=lambda: obtener_ejemplo_random(input_codigo,  output_codigo))
 boton_lexico = tk.Button(
     ventana, text="Analizador léxico", bg='#6A6A6A', fg='white', image=photo, compound=tk.LEFT, padx=5, pady=5, command=analizar_lex_event)
 boton_sintactico = tk.Button(

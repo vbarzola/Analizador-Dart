@@ -1,18 +1,18 @@
 /*
- * Codigo dedicado a la busqueda binaria
+ * Código dedicado a la búsqueda binaria
  */
 
  /*
-  Este metodo no debe de tener errores sintacticos
+  Este método no debe de tener errores sintácticos
  */
 void main(){
     List a = [1,2,3,4,5,6];
     var index = busqueda_binaria(a, 3, 0, 5);
     if(index == [1,2,3,4,5,6].indexOf(3)){
-      print('El  metodo de busqueda binaria');
+      print('El  método de búsqueda binaria');
       print(' ha sido implementado correctamente.');
     }else
-      print("El metodo de busqueda binaria ha fallado");      
+      print("El método de búsqueda binaria ha fallado");      
     
 }
 

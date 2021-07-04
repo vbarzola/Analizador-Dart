@@ -1,5 +1,5 @@
 // Muestra de estucturas de control
-// Tiene varios errores sintacticos
+// Tiene varios errores sintácticos
 void main(){
   const a; //Error las constantes deben ser inicializadas
   List b = [10,20,30];
@@ -11,9 +11,9 @@ void main(){
   for (var i = 0; i<b.length;i++){
     print(b[i]);
   }
-  for(var i = 0; i++; i<b.length){
-    //Error la segunda expresión 
-    //del for debe ser booleana
+  for(var i = 0; i++; i++){
+    //Error, la segunda expresión del for
+    //debe ser booleana
     print(b[i]);
   }
   var i = 0;
@@ -32,5 +32,6 @@ void main(){
   var i = 0;
   while(i<b.length){
     print(b[i]);
+    b[i]=i;
   }
 }

@@ -1,5 +1,5 @@
-//Programa hola mundo.
-// No deberia devolver ningun tipo de error
+// Programa hola mundo.
+// No debería devolver ningún tipo de error
 void main() {
   print('Hello, World!');
 }

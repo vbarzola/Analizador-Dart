@@ -1,5 +1,5 @@
-//Ejemplo probando los metodos de estructuras de datos
-//No se deberia caer
+//Ejemplo probando los métodos de estructuras de datos
+//No se debería caer
 void main(){
     //Listas
     List b = [1,2,3,4];
