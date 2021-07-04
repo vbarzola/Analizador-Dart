@@ -120,7 +120,6 @@ def p_tipo_dato(p):
               | SET
               | MAP
     '''
-    p[0] = p[1]
 
 
 def p_declaradores(p):
@@ -129,7 +128,6 @@ def p_declaradores(p):
                   | FINAL
                   | VAR
     '''
-    p[0] = p[1]
 
 
 def p_declaracion_var(p):
@@ -259,12 +257,10 @@ def p_ejecutar_funcion(p):
 
 def p_casting(p):
     'casting : IPAR valor AS tipo_dato DPAR'
-    p[0] = p[4]
 
 
 def p_error(p):
     manejar_estado.err_sintacticos += 1
-    print(code)
     if p is not None:
         col = find_column(manejar_estado.codigo, p)
         print(
@@ -273,24 +269,6 @@ def p_error(p):
     else:
         print("Final de linea inesperado")
         manejar_estado.descr_err_sintacticos = "Final de linea inesperado\n"
-
-
-# Build the parser
-code = ''
-
-
-def prueba():
-    parser = yacc.yacc(start='operaciones', debug=True)
-    while True:
-        code = input('comp> ')
-        result = parser.parse(code)
-        print(result)
-
-# parser = yacc.yacc(start='all')
-# with open('prueba.txt') as f:
-#     code = ''.join(f.readlines())
-#     result = parser.parse(code)
-# print(result)
 
 
 def analizar_sintac(codigo):

@@ -24,6 +24,7 @@ def p_operando_mat(p):
     '''
 
 
+#Regla nueva sprint 3
 def p_casting_num(p):
     '''
     casting_num : IPAR valor AS INT DPAR
@@ -108,7 +109,7 @@ def p_operacion_comp_orden(p):
     '''
 
 
-#eq = equivalencia -(5+5) < 5
+#eq = equivalencia
 def p_operando_comp_eq(p):
     '''
     operando_comp_eq : numero
@@ -246,13 +247,5 @@ def p_operaciones(p):
     '''
 
 
-# def p_operadores_autoasig(p):
-#    'operadores_autoasig : operador_mat ASIGNAR'
-
-
 def p_operacion_autoasig(p):
     '''operacion_autoasig : ID operador_mat ASIGNAR operacion_mat'''
-
-
-#  ID operador_mat a
-#

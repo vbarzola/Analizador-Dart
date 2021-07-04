@@ -38,6 +38,8 @@ def p_lista_metodos_var(p):
                   | ID PUNTO LENGTH
     '''
 
+# Regla nueva sprint 3
+
 
 def p_lista_metodos_estruct(p):
     '''
@@ -74,6 +76,7 @@ def p_conjunto_metodos_var(p):
     '''
 
 
+# Regla nueva sprint 3
 def p_conjunto_metodos_struct(p):
     '''
     conjunto_metodos_struct : conjunto PUNTO CONTAINS IPAR valor DPAR
@@ -106,6 +109,7 @@ def p_mapa_metodos_var(p):
     '''
 
 
+# Regla nueva sprint 3
 def p_mapa_metodos_struct(p):
     '''
     mapa_metodos_struct : mapa PUNTO REMOVE IPAR valor DPAR
