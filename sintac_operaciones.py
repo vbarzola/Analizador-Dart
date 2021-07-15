@@ -24,7 +24,7 @@ def p_operando_mat(p):
     '''
 
 
-#Regla nueva sprint 3
+# Regla semántica operando numérico
 def p_casting_num(p):
     '''
     casting_num : IPAR valor AS INT DPAR
@@ -45,13 +45,14 @@ def p_operacion_mat_con_par(p):
     '''
 
 
+# Regla semántica al esperar un operando numérico
 def p_operacion_mat_pos(p):
     '''
     operacion_mat_pos : operacion_mat_con_par
-                  | MENOS operacion_mat_con_par
-                  | operacion_mat_con_par operador_mat operacion_mat_pos
-                  | operacion_mat_sin_par
-                  | operando_mat
+                      | MENOS operacion_mat_con_par
+                      | operacion_mat_con_par operador_mat operacion_mat_pos
+                      | operacion_mat_sin_par
+                      | operando_mat
     '''
 
 
@@ -90,6 +91,7 @@ def p_operando_comp_orden(p):
     '''
 
 
+# Regla semántica al esperar un operando numérico
 def p_operacion_comp_orden_sin_par(p):
     '''
     operacion_comp_orden_sin_par : operando_comp_orden operador_comp_orden operando_comp_orden 
@@ -138,7 +140,6 @@ def p_operador_comp_eq(p):
 def p_operacion_comp_eq(p):
     '''
     operacion_comp_eq : operando_comp_eq operador_comp_eq operando_comp_eq
-
     '''
 
 
@@ -176,6 +177,8 @@ def p_operandos_log(p):
                     | operacion_log_not
                     | ID
                     | bool
+                    | ejecutar_funcion
+                    | indexacion
     '''
 
 
@@ -219,6 +222,7 @@ def p_operacion_log_not(p):
     '''
 
 
+# Regla semántica al esperar un valor booleano como operandos
 def p_operacion_log(p):
     '''
     operacion_log : operacion_log_con_par

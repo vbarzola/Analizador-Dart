@@ -38,9 +38,7 @@ def p_lista_metodos_var(p):
                   | ID PUNTO LENGTH
     '''
 
-# Regla nueva sprint 3
-
-
+#Regla semántica
 def p_lista_metodos_estruct(p):
     '''
     lista_metodos_estruct : lista PUNTO JOIN IPAR CADENA_CARAC DPAR
@@ -76,7 +74,7 @@ def p_conjunto_metodos_var(p):
     '''
 
 
-# Regla nueva sprint 3
+#Regla semántica
 def p_conjunto_metodos_struct(p):
     '''
     conjunto_metodos_struct : conjunto PUNTO CONTAINS IPAR valor DPAR
@@ -109,7 +107,7 @@ def p_mapa_metodos_var(p):
     '''
 
 
-# Regla nueva sprint 3
+#Regla semántica
 def p_mapa_metodos_struct(p):
     '''
     mapa_metodos_struct : mapa PUNTO REMOVE IPAR valor DPAR
@@ -128,8 +126,8 @@ def p_mapa_metodos(p):
 def p_estructura_dato(p):
     '''
     estructura_dato : lista
-                | conjunto
-                | mapa
+                    | conjunto
+                    | mapa
     '''
 
 

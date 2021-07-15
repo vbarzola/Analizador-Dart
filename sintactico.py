@@ -165,6 +165,7 @@ def p_cuerpo_estruct(p):
     '''
 
 
+#Regla semántica al esperar una operación lógica como condición de terminación
 def p_for(p):
     '''
     for : FOR IPAR asignacion operacion_log PUNTO_COMA operaciones DPAR cuerpo_estruct
@@ -174,18 +175,21 @@ def p_for(p):
     '''
 
 
+#Regla semántica al esperar una operación lógica como condición
 def p_if(p):
     '''
     if : IF IPAR operacion_log DPAR cuerpo_estruct
     '''
 
 
+#Regla semántica al esperar una operación lógica como condición
 def p_if_else(p):
     '''
     if_else : IF IPAR operacion_log DPAR cuerpo_estruct ELSE cuerpo_estruct
     '''
 
 
+#Regla semántica al esperar una operación lógica como condición
 def p_while(p):
     '''
     while : WHILE IPAR operacion_log DPAR cuerpo_estruct
